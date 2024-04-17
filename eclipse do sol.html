@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eclipse Solar</title>
+
+
+<style>
+
+    body {
+        
+        margin: 0;
+        
+    } 
+    * { 
+        animation: 10s linear infinite; 
+    }
+    
+    .ceu {
+        
+        width: 100vw;
+        height: 100vh;
+        background-color: #87ceeb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation-name: animarCeu;
+        position: relative;
+        overflow: hidden;
+    }
+       
+    .sol,.lua {
+        position: absolute;
+        width: 30vmin;
+        height: 30vmin;
+        border-radius: 50%;
+        
+    }
+
+    .sol { 
+        background-color: #ffd700;
+        box-shadow: 
+            0 0 20px #ffff00,
+            inset 5px 5px 10px
+            rgba(255, 165, 0, 0.5),
+            inset -5px -5px 10px
+            rgba(255, 69, 0, 0.5);
+        z-index: 1;
+        animation-name: animarSol;
+            
+    }
+    
+    .lua {
+        
+        background: radial-gradient( 
+            circle at center, lightgrey, darkslategray);
+        box-shadow: 
+        inset 10px -10px 15px rgba(255, 255, 255, 0.2),
+        inset -5px -5px 10px rgba(0, 0, 0, 0.5),
+        inset 20px 20px 30px rgba(0, 0, 0, 0.4),
+        inset -10px 310px 15px rgba(255, 255, 255, 0.3),
+        inset 30px -30px 40px rgba(255, 255, 255, 0.2);
+        animation-name: animarLua;
+        z-index: 2;
+    }
+    
+    .estrelas {
+        display: block;
+        transition: opacity 1s ease-in-out;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: url(https://vitur.com.br/tutoriais/estrelas.svg);
+        background-repeat: repeat;
+
+    }
+
+    @keyframes animarCeu {
+       50% { background-color: black;}
+    }
+
+    @keyframes animarSol {
+       50% { box-shadow: 0 0 5em 1em #ffffff; }
+    }
+
+    @keyframes animarLua {
+       from { 
+            transform: translateX(-100vmin); 
+        }
+        50% { 
+            background-color: #000000; 
+        }
+        to { 
+            transform: translateX(100vmin); 
+        }
+    }
+    
+    
+</style>
+
+</head>
+
+
+<body>
+
+    <script>
+        
+        const estrelas = document.querySelector('.estrelas');
+        
+        setTimeout(mostraEstrelas, 4000);
+        setTimeout(escondeEstrelas, 5000);
+   
+        setInterval(() => {
+           setTimeout(mostraEstrelas, 4000);
+           setTimeout(escondeEstrelas, 5000);
+        }, 10000);
+   
+        function mostraEstrelas() {
+           estrelas.style.opacity = 0.8;
+        }
+   
+        function escondeEstrelas() {
+           estrelas.style.opacity = 0;
+        }
+           
+       </script>
+
+    <div class="ceu">
+        <div class="sol"></div>
+        <div class="lua"></div>
+        <div class="estrelas"></div>  
+    </div>
+
+</body>
+</html>

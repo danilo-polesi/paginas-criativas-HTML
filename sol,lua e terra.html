@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema Solar</title>
+<style>
+
+    .star {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background-color: white;
+        border-radius: 50%;
+    }
+
+    body {
+        
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: black;
+        overflow: hidden;
+    }
+    
+    .container {
+        font-size: 10px;
+        width: 40em;
+        height: 40em;
+        position: relative;
+    }
+    
+    .sol {
+        position: absolute;
+        top: 15em;
+        left: 15em;
+        width: 10em;
+        height: 10em;
+        background-color: yellow;
+        border-radius: 50%;
+        box-shadow: 0 0 3em white; 
+    }
+    
+    .terra,.lua {
+        position: absolute;
+        border-style: solid;
+        border-color: white
+            transparent
+            transparent
+            transparent;
+        border-width: 0.1em 0.1em 0 0;
+        border-radius: 50%;
+    }
+    
+    .terra {
+        top: 5em;
+        left: 5em;
+        width: 30em;
+        height: 30em;
+        animation: orbit 36.5s linear infinite;
+    }
+    
+    .lua {
+        top: 0;
+        right: 0;
+        width: 8em;
+        height: 8em;
+        animation: orbit 2.7s linear infinite;
+    }
+    
+    .terra::before,.lua::before {content: ''; position: absolute; border-radius: 50%;}
+
+    .terra::before {top: 2em; right: 2.8em; width: 3em; height: 3em; background-color: aqua;}
+
+    .lua::before {top: 0.8em; right: 0.2em; width: 1.2em; height: 1.2em; background-color: silver;}
+
+    @keyframes orbit {
+        to   {transform: rotate(360deg);}
+    }
+
+    
+    
+</style>
+</head>
+
+<body>
+    <div id="container" class="container">
+        <div class="sol"></div>
+        <div class="terra">
+            <div class="lua"></div>
+        </div>
+    </div>
+
+    <script>
+        
+        function createStars() {
+            const numStars = 100;
+            const containerWidth = container.offsetWidth;
+            const containerHeight = container.offsetHeight;
+    
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.left = `${Math.random() * containerWidth}px`;
+                star.style.top = `${Math.random() * containerHeight}px`;
+                container.appendChild(star);
+            }
+        }
+
+        
+
+        const container = document.getElementById('container');
+        //createStars();
+        update();
+        const sol = document.getElementById('sol');
+        const terra = document.getElementById('terra');
+        const lua = document.getElementById('lua');
+        
+        let terraAngle = 0;
+        let luaAngle = 0;
+        
+        
+        
+        function update() {
+            const solX = container.offsetWidth / 2 - sol.offsetWidth / 2;
+            const solY = container.offsetHeight / 2 - sol.offsetHeight / 2;
+            const terraRadius = 200;
+            const luaRadius = 50;
+            const terraSpeed = 0.005;
+            const luaSpeed = 0.02;
+            
+            const terraX = solX + terraRadius * Math.cos(terraAngle);
+            const terraY = solY + terraRadius * Math.sin(terraAngle);
+            const luaX = terraX + luaRadius * Math.cos(luaAngle);
+            const luaY = terraY + luaRadius * Math.sin(luaAngle);
+            
+            terra.style.left = `${terraX}px`;
+            terra.style.top = `${terraY}px`;
+            
+            lua.style.left = `${luaX}px`;
+            lua.style.top = `${luaY}px`;
+            
+            terraAngle += terraSpeed;
+            luaAngle += luaSpeed;
+            
+            requestAnimationFrame(update);
+        }
+        
+        
+    </script>
+
+</body>
+</html>

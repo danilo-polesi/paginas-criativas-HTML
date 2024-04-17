@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slider</title>
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        user-select: none;
+    }
+    body {
+        height: 100vh;
+        background-color: #f5f5f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .img-container {
+        position: relative;
+        height: 700px;
+        width: 700px;
+        perspective: 500px;
+        transform-style: preserve-3d;
+    }
+    .box {
+        box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+        width: 700px;
+        height: 700px;
+        border-radius: 25px;
+        overflow: hidden;
+        border: 1px solid #bbb;
+        position: absolute;
+        top: 50%;
+        transition: 800ms ease-in-out;
+    }
+    .box img {
+        width: 100%;
+        height: 100%;
+    }
+    .box:first-of-type {
+        z-index: 5;
+        opacity: 0;
+        left: 15%;
+        transform: transLate(-50%, -50%) rotateY(-10deg);
+    }
+    .box:nth-of-type(2) {
+        opacity: 1;
+        left: 20%;
+        transform: transLate(-50%, -50%) rotateY(-10deg);
+        z-index: 5;
+    }
+    .box:nth-of-type(3) {
+        left: 25%;
+        opacity: 0.75;
+        color: #eee;
+        z-index: 10;
+        transform: transLate(-50%, -50%) rotateY(-10deg) transLateZ(-50px);
+    }
+    .box:nth-of-type(4) {
+        z-index: 5;
+        opacity: 0.5;
+        left: 30%;        
+        transform: transLate(-50%, -50%) rotateY(-10deg) transLateZ(-100px);
+    }
+
+</style>
+</head>
+
+<body background=""><center>
+    
+    <div class="img-container">
+        <div class="box">
+            <img src="https://wallpapers.com/images/high/calm-aesthetic-desktop-itoh0e2cv78ftv8a.webp" alt=""/>
+        </div>
+
+        <div class="box">
+            <img src="https://img.freepik.com/free-photo/vibrant-colors-flow-abstract-wave-pattern-generated-by-ai_188544-9781.jpg?w=1380&t=st=1713240757~exp=1713241357~hmac=6187a6936fd964eee06352ddfdeda2d848b6295c40d8a0b9a8445d21b12e1f1f" alt=""/>
+        </div>
+
+        <div class="box">
+            <img src="https://img.freepik.com/free-photo/abstract-wavy-background_23-2150534051.jpg?w=1380&t=st=1713240865~exp=1713241465~hmac=86b60143211b895686279cb6ba14d5e76079e9a4f8ff48a52125d81ea14ccb92" alt=""/>
+        </div>
+
+        <div class="box">
+            <img src="https://img.freepik.com/free-photo/orange-black-abstract-wavy-background_125540-4905.jpg?w=1480&t=st=1713240904~exp=1713241504~hmac=8a28800ae2ddcd270e6e6ddcd69dd8d72a838c04fd737a7de9eb42ddd085bf68" alt=""/>
+        </div>
+
+        <!-- <div class="box">
+            <img src="https://img.freepik.com/free-vector/abstract-paper-style-background_23-2150758934.jpg?w=1380&t=st=1713240954~exp=1713241554~hmac=d46159ddde1cb30b906f0f72a2a1b265dac11151d0f43e4e5fc902b46bfe4f74" alt=""/>
+        </div> -->
+
+    </div>
+
+    <script>
+
+        let imgContainer = document.querySelector(".img-container");
+        setInterval(() => { let last = imgContainer.firstElementChild;
+             last.remove();
+              imgContainer.appendChild(last);
+             }, 2500);      
+ 
+    </script>
+</center>
+</body>
+</html>
